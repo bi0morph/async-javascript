@@ -25,3 +25,52 @@ Source: ([@getify](https://twitter.com/getify) [Comparing various async patterns
 	- Отобразите их сразу же, как только они будут загружены (не ждите пока все будут загружены)
 	- Но, отображайте их в правильной очереди: "file1", "file2", "file3".
 	- После того, как все три будут отображены, вывести сообщение "Завершено!".
+
+
+
+## Simple thunk
+
+```javascript
+
+function add(a, b) {
+	return a + b;
+}
+
+var thunk = function() {
+	return add(10, 25);
+}
+
+thunk();
+```  
+  
+## Not so simple thunk  
+
+```javascript
+
+function addAsync(a, b, cb) {
+	setTimeout(function() {
+		cb( a + b );
+	}, 1000);
+}
+
+var thunk = function(cb) {
+	return addAsync(10, 25, cb);
+}
+
+thunk(function(sum) {
+	console.log( sum );
+});
+```  
+
+## Create thunk from different functions  
+
+```javascript
+
+function makeThunk(fn) {
+	var args = [].slice.call(arguments, 1);
+	return function(cb)  {
+		args.push(cb);
+		fn.apply(null, args);
+	}
+}
+```  
