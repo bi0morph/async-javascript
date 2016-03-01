@@ -1,10 +1,10 @@
 # Instructions  
 
-Source: (@getify Comparing various async patterns for a single demo)[https://github.com/getify/a-tale-of-three-lists]  
+Source: ([@getify](https://twitter.com/getify) [Comparing various async patterns for a single demo](https://github.com/getify/a-tale-of-three-lists))
 
 1. This exercise calls for you to write some async flow-control code.  
  - Use callbacks only.  
- - Use thunk.  
+ - Use thunks ( see [here](http://zef.me/6096/callback-free-harmonious-node-js) and [here](http://blog.getify.com/page/3/)).  
  - Use Promise.  
 2. Expected behavior:  
  - Request all 3 files at the same time (in "parallel").
@@ -17,7 +17,7 @@ Source: (@getify Comparing various async patterns for a single demo)[https://git
 
 1. Напишите управление последовательностью асинхронными событиями.
  - Используя одни лишь функции обратного вызова(callbacks)
- - Используя thunk
+ - Используя thunks ( see [here](http://zef.me/6096/callback-free-harmonious-node-js) and [here](http://blog.getify.com/page/3/))
  - Используя Promise/Deffered
 
 2. Ожидаемое поведение:
