@@ -23,30 +23,29 @@ function fakeAjax (url, cb) {
 
 
 function getFile (file) {
-	return new Promises(function executor(resolve, reject) {
+	return new Promise(function(resolve, reject) {
 		fakeAjax(file, resolve);	
 	});
 }
 
+//.map
+//.reduce
 
-// --------------------------------------
-// request all files at once in "parallel"
-var promise1 = getFile("file1"),
-	promise2 = getFile("file2"),
-	promise3 = getFile("file3");
+// Request all files at once in
+// "parallel" via getFile(..)
+//
+// Render as each one finishes,
+// but only once previous rendering
+// is done
 
-promise1
-	.then(output)
-	.then(function () {
-		return promise2;
-	})
-	.then(output)
-	.then(function () {
-		return promise3;	
-	})
-	then(output) {
-	then(function () {
-		output("Complete!");
-	})
+var files = ['file1', 'file2', 'file3'];
 
-
+files.map(getFile)
+.reduce(function(chain, promise) {
+	return chain.then(function() {
+		return promise;
+	}).then(output);
+}, Promise.resolve())
+.then(function() {
+	output('Complite');
+});
